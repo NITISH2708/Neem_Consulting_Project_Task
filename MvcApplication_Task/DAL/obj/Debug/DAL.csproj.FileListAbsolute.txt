@@ -1,0 +1,10 @@
+C:\Users\bantee-pc\Desktop\GeekforGeeks_Program\MvcApplication_Task\DAL\bin\Debug\DAL.dll.config
+C:\Users\bantee-pc\Desktop\GeekforGeeks_Program\MvcApplication_Task\DAL\bin\Debug\DAL.dll
+C:\Users\bantee-pc\Desktop\GeekforGeeks_Program\MvcApplication_Task\DAL\bin\Debug\DAL.pdb
+C:\Users\bantee-pc\Desktop\GeekforGeeks_Program\MvcApplication_Task\DAL\bin\Debug\EntityFramework.dll
+C:\Users\bantee-pc\Desktop\GeekforGeeks_Program\MvcApplication_Task\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\bantee-pc\Desktop\GeekforGeeks_Program\MvcApplication_Task\DAL\bin\Debug\EntityFramework.xml
+C:\Users\bantee-pc\Desktop\GeekforGeeks_Program\MvcApplication_Task\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\bantee-pc\Desktop\GeekforGeeks_Program\MvcApplication_Task\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\bantee-pc\Desktop\GeekforGeeks_Program\MvcApplication_Task\DAL\obj\Debug\DAL.dll
+C:\Users\bantee-pc\Desktop\GeekforGeeks_Program\MvcApplication_Task\DAL\obj\Debug\DAL.pdb

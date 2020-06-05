@@ -1,0 +1,266 @@
+﻿<!-- Page Content -->
+<div class="container">
+    <div class="container">
+        <div class="flat-design-form">
+            <ul class="tabs">
+                <li>
+                    <a class="active" href="#login" id="login-tab" name="login-tab"><span id="login_icon"></span>Login</a>
+                </li>
+                <li>
+                    <a href="#register" id="register-tab" name="register-tab"><span id="signup_icon"></span>Register</a>
+                </li>
+            </ul>
+            <div class="form-display show" id="login">
+                <h1>Login</h1>
+
+                <form action="" method="post" novalidate="">
+                    <fieldset>
+                        <ul>
+                            <li>
+                                <div class="item">
+                                    <input  id="uname" placeholder="Username" required="required" type="text">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item">
+                                    <input  id="upassword" placeholder="Password" required='required' type="password">
+                                </div>
+                            </li>
+                            <li>
+                                <input class="button-login" type="button" id="btn_login" value="Login">
+                            </li>
+                        </ul>
+                    </fieldset>
+                </form>
+            </div><div class="form-display hide" id="register">
+                <h1>Register</h1>
+
+                <form id="frmContact">
+                    <div id="mail-status"></div>
+                    <fieldset>
+                        <ul>
+                            <li>
+                                <div class="item">
+                                    <input  id="username" placeholder="User Name" required="required" type="text">
+                                </div>
+                                <div class="registrationFormAlert" style="color:green;" id="Checkuser">
+
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item">
+                                    <input class='email' id="email" placeholder="Email" required="required" type="email">
+                                </div>
+                                <div class="registrationFormAlert" style="color:green;" id="CheckEmail">
+
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="item">
+                                    <input maxlength="9" id="password" placeholder="Password" required='required' type="password">
+                                </div>
+                                <div class="registrationFormAlert" style="color:green;" id="CheckPasswordMatch">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item">
+                                    <input maxlength="9" id="cnfpassword"placeholder="Confirm Password" required='required' type="password">
+                                </div>
+                                <div class="registrationFormAlert" style="color:green;" id="CheckConfirmPasswordMatch">
+                                </div>
+                            </li>
+                            <li>
+                                <input class="button-register" id='btn_submit' type="button"
+                                       value="Sign Up">
+                            </li>
+                        </ul>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" id="btn_close1">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label>Registered Successfully...........!</label>
+                </div>
+                <div class="modal-footer">
+                    <span id="btn_close2">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </span>
+                   
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Hidden("RedirectTo", Url.Action("Index", "Home"));
+<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link href="~/CSS/register.css" rel="stylesheet" />
+<script>
+    (function ($) {
+        // constants
+        var SHOW_CLASS = 'show',
+            HIDE_CLASS = 'hide',
+            ACTIVE_CLASS = 'active';
+        $('.tabs').on('click', 'li a', function (e) {
+            e.preventDefault();
+            var $tab = $(this),
+                href = $tab.attr('href');
+            $('.active').removeClass(ACTIVE_CLASS);
+            $tab.addClass(ACTIVE_CLASS);
+            $('.show').removeClass(SHOW_CLASS).addClass(HIDE_CLASS).hide();
+            $(href).removeClass(HIDE_CLASS).addClass(SHOW_CLASS).hide().fadeIn(620);
+        });
+    })(jQuery);
+
+    $("#btn_submit").click(function () {
+        var user = $("#username").val();
+        var email = $("#email").val();
+        var password = $("#password").val();
+        var confirmPassword = $("#cnfpassword").val();
+        if (user != 0) {
+            if (!isValiduser(user)) {
+                $("#Checkuser").html("Invalid user id");
+                return false;
+            }
+
+            else {
+                $("#Checkuser").html("valid user id");
+            }
+
+
+        }
+        if (user == "") {
+            $("#Checkuser").html("Please fill required");
+        }
+
+        if (email != 0) {
+            if (!isValidEmailAddress(email)) {
+                $("#CheckEmail").html("Invalid Email");
+                return false;
+            }
+            
+            else {
+                $("#CheckEmail").html("valid Email");
+            }
+
+
+        }
+        if (email == "") {
+            $("#CheckEmail").html("Please fill required");
+        }
+        if (password != 0) {
+            if (!isValidpassword(password)) {
+                $("#CheckPasswordMatch").html("Invalid password");
+                return false;
+            }
+            
+            else {
+                $("#CheckPasswordMatch").html("valid password");
+            }
+
+
+        }
+        if (password == "") {
+            $("#CheckPasswordMatch").html("Please fill required");
+        }
+        if (confirmPassword != 0) {
+            if (password != confirmPassword) {
+                $("#CheckConfirmPasswordMatch").html("Passwords does not match!");
+                return flase;
+            }
+            
+            else {
+                $("#CheckConfirmPasswordMatch").html("Passwords match.");
+            }
+
+
+        }
+        if (confirmPassword == "") {
+            $("#CheckConfirmPasswordMatch").html("Please fill required");
+        }
+        if (user != ""&& email != "" && password != "" && confirmPassword != "") {
+
+        }
+        else {
+            
+            return false;
+        }
+        var empObj = {
+            username: $('#username').val(),
+            email: $('#email').val(),
+            password: $('#password').val(),
+            confirmPassword: $('#cnfpassword').val()
+        };
+       
+        $.ajax({
+            url: "/EmployeeRegistration/Registration",
+            data: JSON.stringify(empObj),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                $('#exampleModal').modal('show');
+
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+
+    })
+
+    function isValidEmailAddress(emailAddress) {
+        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        return pattern.test(emailAddress);
+    }
+    function isValidpassword(password) {
+        var pattern = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/);
+        return pattern.test(password);
+    }
+    function isValiduser(user) {
+        var pattern = new RegExp(/^[a-z0-9_-]{5,10}$/);
+        return pattern.test(user);
+    }
+
+    $("#btn_close1").click(function () {
+        window.location.reload();
+    })
+    $("#btn_close2").click(function () {
+        window.location.reload();
+    })
+
+    var url = $("#RedirectTo").val();
+    $("#btn_login").click(function () {
+        var empObj = {
+            username : $("#uname").val().toLowerCase(),
+            password : $('#upassword').val()
+        };
+       
+        $.ajax({
+            url: "/EmployeeRegistration/Login",
+            data: JSON.stringify(empObj),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (data) {               
+                window.location.href = '/Home/Index/';
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    })
+</script>
